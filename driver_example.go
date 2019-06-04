@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/samalba/buse-go/buse"
+	"github.com/binwiederhier/buse-go/buse"
 )
 
 // This device is an example implementation of an in-memory block device

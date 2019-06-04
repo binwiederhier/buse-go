@@ -142,7 +142,7 @@ func (bd *BuseDevice) Connect() error {
 			return fmt.Errorf("NBD client stopped: %s", err)
 		}
 		readNbdRequest(buf, &request)
-		fmt.Printf("DEBUG %#v\n", request)
+		// fmt.Printf("DEBUG %#v\n", request)
 		if request.Magic != NBD_REQUEST_MAGIC {
 			return fmt.Errorf("Fatal error: received packet with wrong Magic number")
 		}
