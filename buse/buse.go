@@ -161,7 +161,15 @@ func (bd *BuseDevice) Connect() error {
 	return nil
 }
 
+func CreateDeviceSync(device string, size uint, buseDriver BuseInterface) (*BuseDevice, error) {
+	return createDevice(device, size, os.O_SYNC, buseDriver)
+}
+
 func CreateDevice(device string, size uint, buseDriver BuseInterface) (*BuseDevice, error) {
+	return createDevice(device, size, 0, buseDriver)
+}
+
+func createDevice(device string, size uint, flag int, buseDriver BuseInterface) (*BuseDevice, error) {
 	buseDevice := &BuseDevice{size: size, device: device, driver: buseDriver}
 	sockPair, err := syscall.Socketpair(syscall.AF_UNIX, syscall.SOCK_STREAM, 0)
 	if err != nil {
