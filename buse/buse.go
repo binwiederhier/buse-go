@@ -181,6 +181,7 @@ func createDevice(device string, size uint, flag int, buseDriver BuseInterface) 
 	}
 	buseDevice.deviceFp = fp
 	ioctl(buseDevice.deviceFp.Fd(), NBD_SET_SIZE, uintptr(size))
+	ioctl(buseDevice.deviceFp.Fd(), NBD_SET_BLKSIZE, uintptr(512))
 	ioctl(buseDevice.deviceFp.Fd(), NBD_CLEAR_QUE, 0)
 	ioctl(buseDevice.deviceFp.Fd(), NBD_CLEAR_SOCK, 0)
 	buseDevice.socketPair = sockPair
